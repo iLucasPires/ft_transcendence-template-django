@@ -1,15 +1,12 @@
-  <button
-    href="#{{ id }}"
-    id="v-pills-{{ id }}-tab"
-    data-bs-toggle="pill"
-    data-bs-target="#v-pills-{{ id }}"
-    type="button"
-    role="tab"
-    aria-controls="v-pills-{{ id }}"
-    aria-selected="{% if active %}true{% else %}false{% endif %}"
-    class="btn btn-outline-dark text-start {% if active %}active{% endif %}"
-  >
-    <i class="bi {{ icon }}"></i>
-    <span>{{ label }}</span>
-</button>
-
+<a
+  role="tab"
+  type="button"
+  href="#{{ id }}"
+  id="tab-{{ id }}"
+  aria-controls="panel-{{ id }}"
+  aria-selected="{% if active %}true{% else %}false{% endif %}"
+  class="btn btn-outline-dark w-100 text-start {% if active %}active{% endif %}"
+>
+  <i class="bi {{ icon }}"></i>
+  <span>{{ label }}</span>
+</a>

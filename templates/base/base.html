@@ -23,7 +23,40 @@
       crossorigin="anonymous"
     ></script>
   </head>
-  <body class="" style="height: 100vh">
+  <body style="height: 100vh">
     {% block content %} {% endblock %}
   </body>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const tabs = document.getElementById("menu");
+      const defaultHash = "#game";
+      let currentHash = window.location.hash || defaultHash;
+      
+      function getTabByHash(hash) {
+        return tabs.querySelector(`a[href="${hash}"]`);
+      }
+  
+      function showTab(tab) {
+        tab && new bootstrap.Tab(tab).show();
+      }
+  
+      tabs.addEventListener("click", (e) => {
+        const clickedTab = e.target.closest('[role="tab"]');
+        if (clickedTab && clickedTab.getAttribute("aria-selected") === "false") {
+          currentHash = clickedTab.hash;
+          history.pushState(null, null, currentHash);
+          showTab(clickedTab);
+        }
+      });
+  
+      window.addEventListener("popstate", () => {
+        currentHash = window.location.hash || defaultHash;
+        showTab(getTabByHash(currentHash));
+      });
+
+      showTab(getTabByHash(currentHash));
+    });
+  </script>
+  
 </html>
